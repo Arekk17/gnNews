@@ -5,8 +5,9 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/rootReducer';
-import { setNewsView } from '../../store/news/newsSlice';
-import logo from '../../images/gnnews.png'
+import { selectLanguage, setNewsView } from '../../store/news/newsSlice';
+import { translation } from '../../translation';
+
 import SidebarMenu from '../sidemenu/sidemenu';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,27 +51,32 @@ const Header: React.FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const newsView = useSelector((state: RootState) => state.news.view);
-  const [open, setOpen] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const languageChange = useSelector((state: RootState) => state.news.selectedLanguage)
+  const [open, setOpen] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const handleNewsViewChange = () => {
     dispatch(setNewsView(newsView === 'list' ? 'grid' : 'list'));
   };
 
-  const handlePopupOpen = () => {
+  const handlePopupOpen = (): void => {
     setOpen(true);
   };
 
-  const handlePopupClose = () => {
+  const handlePopupClose = (): void => {
     setOpen(false);
   };
+
+  const handleLanguageChange = (): void => {
+    dispatch(selectLanguage(languageChange === 'pl' ? 'en' : 'pl'))
+  }
 
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <div>
           <Link to="/" className={classes.title}>
-            <img src={logo} alt="logo" />
+            <img src="/images/gnnews.png" alt="logo" />
           </Link>
         </div>
         <div>
@@ -80,7 +86,7 @@ const Header: React.FC = () => {
             className={classes.button}
             onClick={handleNewsViewChange}
           >
-            {newsView === 'list' ? 'Grid View' : 'List View'}
+            {newsView === 'list' ? translation[languageChange].viewGridLabel : translation[languageChange].viewGridLabel}
           </Button>
           <Button
             variant="contained"
@@ -88,30 +94,36 @@ const Header: React.FC = () => {
             className={classes.button}
             onClick={handlePopupOpen}
           >
-            Tell me more
+            {translation[languageChange].popUpButton}
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={handleLanguageChange}
+          >
+            {languageChange === 'pl' ? 'en' : 'pl'}
           </Button>
           <IconButton className={classes.menuButton} color="inherit" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
           <Dialog open={open} onClose={handlePopupClose}>
-            <DialogTitle>What I like and dislike</DialogTitle>
+            <DialogTitle>Trudność i Frajda</DialogTitle>
             <DialogContent>
-              <p>Things I like:</p>
+              <p>Najwieksze trudnosci</p>
               <ul>
-                <li>Learning new things</li>
-                <li>Traveling and exploring new places</li>
-                <li>Spending time with loved ones</li>
+                <li>Musiałem się podszkolić w uzyciu reduxa co mogę uważac za poczatkowa trudność</li>
               </ul>
-              <p>Things I don't like:</p>
+              <p>Najwieksza frajda:</p>
               <ul>
-                <li>Cold weather</li>
-                <li>Being stuck in traffic</li>
-                <li>Watching horror movies</li>
+                <li>Budowa całej strony</li>
+                <li>Stylizacja</li>
+                <li>Rozwijacie swoich kompetencji</li>
               </ul>
             </DialogContent>
             <DialogActions>
               <Button onClick={handlePopupClose} color="primary" variant="contained">
-                Close
+              {translation[languageChange].closeButton}
               </Button>
             </DialogActions>
           </Dialog>
