@@ -112,7 +112,8 @@ const Header: React.FC = () => {
             <DialogContent>
               <p>Najwieksze trudnosci</p>
               <ul>
-                <li>Musiałem się podszkolić w uzyciu reduxa co mogę uważac za poczatkowa trudność</li>
+                <li>Zbyt rzadkie uyżywanie redux w swoich projektach</li>
+                <li>Pisanie testów. Nie pisałem testów na froncie i musialem sie nauczyc.</li>
               </ul>
               <p>Najwieksza frajda:</p>
               <ul>
