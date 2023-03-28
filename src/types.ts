@@ -1,6 +1,7 @@
-import { ReactNode } from "react";
+import { Key, ReactNode } from "react";
 
 export type Article = {
+    id: Key | null | undefined;
     source: {
       id: number | null;
       name: string
