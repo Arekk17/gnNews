@@ -88,6 +88,7 @@ const handleView = (article: Article) => {
                   <List className={classes.list}>
                   {news.map((article) => (
                    <ListItem 
+                      key={article.id}
                       className={classes.listItem} 
                       onClick={() => handleView(article)}
                     >
@@ -109,7 +110,7 @@ const handleView = (article: Article) => {
           ) : (
             <Grid container spacing={3}>
               {news.map((article) => (
-                <Grid item xs={12} sm={6} md={4} onClick={() => handleView(article)}>
+                <Grid key={article.id} item xs={12} sm={6} md={4} onClick={() => handleView(article)}>
                  <Paper className={classes.paper}>
                   <Typography variant="h5">{article.title}</Typography>
                   <Typography variant="subtitle1">{article.description}</Typography>
