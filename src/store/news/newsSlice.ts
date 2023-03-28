@@ -2,9 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Article } from '../../types';
 import { NewsState, NewsView } from './newsSlice.type'
 
-//wyrzucic typy do bardzie ogolnego piejsca 
-
-
 const initialState: NewsState = {
   view: 'list',
   news: [],
