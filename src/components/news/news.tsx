@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const NewsSection: React.FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -82,7 +81,6 @@ const handleView = (article: Article) => {
   setSelectedArticle({ author: article.author, content: article.content, url: article.url });
   setIsPopupOpen(true);
 }
-
 
   return (
     <div className={classes.root}>

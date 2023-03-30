@@ -8,4 +8,3 @@ import { Country } from './sidemenu.types'
   ];
   
   export default countries;
-  

@@ -2,7 +2,6 @@ import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Link } from '@material-ui/core';
 import type { NewsPopupProps } from './news.types'
 
-
 const NewsPopup: React.FC<NewsPopupProps> = ({ author, content, url, isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>

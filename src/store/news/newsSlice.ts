@@ -39,7 +39,6 @@ const newsSlice = createSlice({
   },
 });
 
-
 export const { setNewsView, fetchNewsStart, fetchNewsSuccess, fetchNewsFailure, selectCountry, selectLanguage } = newsSlice.actions;
 export default newsSlice.reducer;
 
