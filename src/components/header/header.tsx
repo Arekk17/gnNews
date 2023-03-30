@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Button, Dialog, DialogTitle, DialogContent, DialogActions, Toolbar, IconButton } from '@material-ui/core';
+import { AppBar, Button, Toolbar, IconButton } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { selectLanguage, setNewsView } from '../../store/news/newsSlice';
 import { translation } from '../../translation';
 
 import SidebarMenu from '../sidemenu/sidemenu';
+import Popup from './popup';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -16,23 +17,21 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: '#000',
     '&:hover': {
-      color: '#000',
       textDecoration: 'none',
     },
   },
   button: {
     marginLeft: theme.spacing(2),
     backgroundColor: '#110a33',
-    color: 'white',
+    color: '#fff',
     borderRadius: '10rem',
     '&:hover': {
       transition: 'all 0.3s ease-in-out',
       backgroundColor: '#2f66d3',
     },
-  },
-  menuButton: {
-    marginLeft: '1em',
-    marginRight: -12,
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(2)
+    },
   },
   toolbar: {
     display: 'flex',
@@ -42,7 +41,32 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       alignItems: 'center',
-      marginBottom: '10px'
+    },
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingTop: theme.spacing(1),
+    },
+  },
+  buttonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
+  },
+  menuButton: {
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(2)
+    },
+  },
+  menuIcon: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     },
   },
 }));
@@ -52,19 +76,19 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
   const newsView = useSelector((state: RootState) => state.news.view);
   const languageChange = useSelector((state: RootState) => state.news.selectedLanguage)
-  const [open, setOpen] = useState<boolean>(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
 
   const handleNewsViewChange = () => {
     dispatch(setNewsView(newsView === 'list' ? 'grid' : 'list'));
   };
 
   const handlePopupOpen = (): void => {
-    setOpen(true);
+    setOpenPopup(true);
   };
 
   const handlePopupClose = (): void => {
-    setOpen(false);
+    setOpenPopup(false);
   };
 
   const handleLanguageChange = (): void => {
@@ -79,7 +103,7 @@ const Header: React.FC = () => {
             <img src="/images/gnnews.png" alt="logo" />
           </Link>
         </div>
-        <div>
+        <div className={classes.buttonContainer}>
           <Button
             variant="contained"
             color="secondary"
@@ -107,30 +131,10 @@ const Header: React.FC = () => {
           <IconButton className={classes.menuButton} color="inherit" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
-          <Dialog open={open} onClose={handlePopupClose}>
-            <DialogTitle>Trudność i Frajda</DialogTitle>
-            <DialogContent>
-              <p>Najwieksze trudnosci</p>
-              <ul>
-                <li>Zbyt rzadkie uyżywanie redux w swoich projektach</li>
-                <li>Pisanie testów. Nie pisałem testów na froncie i musialem sie nauczyc.</li>
-              </ul>
-              <p>Najwieksza frajda:</p>
-              <ul>
-                <li>Budowa całej strony</li>
-                <li>Stylizacja</li>
-                <li>Rozwijacie swoich kompetencji</li>
-              </ul>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handlePopupClose} color="primary" variant="contained">
-              {translation[languageChange].closeButton}
-              </Button>
-            </DialogActions>
-          </Dialog>
         </div>
       </Toolbar>
       <SidebarMenu open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Popup open={openPopup} onClose={handlePopupClose} />
     </AppBar>
   );
 };
