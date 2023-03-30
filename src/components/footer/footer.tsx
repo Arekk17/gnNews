@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '10px',
     background: 'radial-gradient(circle, rgba(104,214,245,1) 0%, rgba(16,156,247,1) 100%)',
-    color: '#fff',
+    color: '#f7f7f7',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       alignItems: 'center',
@@ -21,13 +21,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '0.9rem',
     fontWeight: 400,
     marginLeft: '10px',
-    color: '#fff',
   },
   newsCount: {
     fontSize: '0.9rem',
     fontWeight: 400,
     marginRight: '10px',
-    color: '#fff',
   },
 }));
 
