@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import NewsPopup from './news.modal';
 import type { ArticleState} from './news.types'
 import { Article } from '../../types'
+import Loading from '../loading/loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginRight: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+      marginRight: theme.spacing(1),
+    },
   },
   list: {
     backgroundColor: '#f9f9f9',
@@ -80,7 +86,7 @@ const handleView = (article: Article) => {
 
   return (
     <div className={classes.root}>
-      {loading && <Typography variant="h6">Loading news...</Typography>}
+      {loading && <Loading />}
       {error && <Typography variant="h6">Error: {error}</Typography>}
       {news && (
         <>
@@ -88,7 +94,7 @@ const handleView = (article: Article) => {
                   <List className={classes.list}>
                   {news.map((article) => (
                    <ListItem 
-                      key={article.id}
+                      key={article.url}
                       className={classes.listItem} 
                       onClick={() => handleView(article)}
                     >
@@ -110,7 +116,7 @@ const handleView = (article: Article) => {
           ) : (
             <Grid container spacing={3}>
               {news.map((article) => (
-                <Grid key={article.id} item xs={12} sm={6} md={4} onClick={() => handleView(article)}>
+                <Grid key={article.url} item xs={12} sm={6} md={4} onClick={() => handleView(article)}>
                  <Paper className={classes.paper}>
                   <Typography variant="h5">{article.title}</Typography>
                   <Typography variant="subtitle1">{article.description}</Typography>
