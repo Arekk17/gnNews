@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## API configuration
+
+To use the News API, you must generate an API key from newsapi.org and add it to your project's environment variables. In the root directory of your project, create a file named ".env.test" and add the following line:
+
+REACT_APP_NEWS_API_KEY=your_api_key_here
+
+Then, rename ".env.test" to ".env". This will allow your app to access the API key through the environment variable "REACT_APP_NEWS_API_KEY".
