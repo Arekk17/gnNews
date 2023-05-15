@@ -5,9 +5,9 @@ import { List, ListItem, ListItemIcon, ListItemText, Divider, Drawer, IconButton
 import ReactCountryFlag from "react-country-flag"
 import { ChevronRight } from '@material-ui/icons'
 import { selectCountry } from '../../store/news/newsSlice';
-import countries from './sidemenu.utils';
+import countries from './Sidemenu.utils';
 import { useDispatch } from 'react-redux';
-import { SidebarMenuProps } from './sidemenu.types'
+import { SidebarMenuProps } from './Sidemenu.types';
 
 const drawerWidth = 240;
 

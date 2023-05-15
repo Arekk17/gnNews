@@ -4,10 +4,10 @@ import { RootState } from '../../store/rootReducer';
 import { fetchNewsStart, fetchNewsSuccess, fetchNewsFailure } from '../../store/news/newsSlice';
 import { Avatar, Grid, List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import NewsPopup from './news.modal';
-import type { ArticleState} from './news.types'
+import NewsPopup from './News.modal';
+import type { ArticleState } from './News.types';
 import { Article } from '../../types'
-import Loading from '../loading/loading';
+import Loading from '../Loading/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {

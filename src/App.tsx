@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from './components/footer/footer';
-import Header from './components/header/header';
-import NewsSection from './components/news/news';
+import Header from './components/Header/Header';
+import NewsSection from './components/News/News';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (

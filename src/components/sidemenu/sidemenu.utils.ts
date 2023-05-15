@@ -1,4 +1,4 @@
-import { Country } from './sidemenu.types'
+import { Country } from "./Sidemenu.types";
   
   const countries: Country[] = [
     { name: 'USA', code: 'us', },
