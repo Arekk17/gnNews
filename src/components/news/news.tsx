@@ -65,7 +65,7 @@ const NewsSection: React.FC = () => {
   const view = useSelector((state: RootState) => state.news.view);
   const selectedCountryCode = useSelector((state: RootState) => state.news.selectedCountryCode)
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-  const [selectedArticle, setSelectedArticle] = useState<ArticleState>({ author: '', content: '', url: '' });
+  const [selectedArticle, setSelectedArticle] = useState<ArticleState>({ author: '', content: '', url: '', urlToImage: '' });
 
   const API_KEY = process.env.REACT_APP_API_NEWS;
 
@@ -78,7 +78,7 @@ const NewsSection: React.FC = () => {
   }, [API_KEY, dispatch, selectedCountryCode]);
 
 const handleView = (article: Article) => {
-  setSelectedArticle({ author: article.author, content: article.content, url: article.url });
+  setSelectedArticle({ author: article.author, content: article.content, url: article.url, urlToImage: article.urlToImage });
   setIsPopupOpen(true);
 }
 
@@ -140,6 +140,7 @@ const handleView = (article: Article) => {
           author={selectedArticle.author}
           content={selectedArticle.content}
           url={selectedArticle.url}
+          urlToImage={selectedArticle.urlToImage}
           isOpen={isPopupOpen}
           onClose={() => setIsPopupOpen(false)}
         />
