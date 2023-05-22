@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import NewsSection from '../components/News/News';
+import NewsSection from '../components/news/News';
 import { Store, AnyAction } from '@reduxjs/toolkit';
 import '@testing-library/jest-dom';
 

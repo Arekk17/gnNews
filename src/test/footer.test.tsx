@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/footer/Footer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import '@testing-library/jest-dom/extend-expect';

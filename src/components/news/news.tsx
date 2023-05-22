@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import NewsPopup from './News.modal';
 import type { ArticleState } from './News.types';
 import { Article } from '../../types'
-import Loading from '../Loading/Loading';
+import Loading from '../loading/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {

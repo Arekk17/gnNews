@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/rootReducer';
 import { selectLanguage, setNewsView } from '../../store/news/newsSlice';
 import { translation } from '../../translation';
-import SidebarMenu from '../Sidemenu/Sidemenu';
+import SidebarMenu from '../sidemenu/Sidemenu';
 import Popup from './Popup';
 
 const useStyles = makeStyles((theme) => ({
